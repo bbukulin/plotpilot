@@ -1,7 +1,9 @@
+import Billboard from "@/components/movie/billboard";
+
 const Home = () => {
 	return (
 		<div>
-			<p>Homepage</p>
+			<Billboard />
 		</div>
 	);
 };

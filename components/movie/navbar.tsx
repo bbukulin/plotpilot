@@ -7,8 +7,6 @@ import {
 	LayoutDashboard,
 	SlidersHorizontal,
 	MessageSquareHeart,
-	PanelsTopLeft,
-	Banana,
 } from "lucide-react";
 
 import {
@@ -36,9 +34,14 @@ const Navbar = () => {
 	};
 
 	return (
-		<div className="bg-primary flex justify-between items-center p-4 rounded-md w-[600px] shadow-sm ">
+		<div className="bg-black/50 flex justify-between items-center py-2 px-12 w-full z-40">
 			<div>
-				<Button onClick={() => router.push("/home")}>Home</Button>
+				<Button
+					variant="link"
+					className="text-white font-medium text-lg"
+					onClick={() => router.push("/home")}>
+					PlotPilot
+				</Button>
 			</div>
 			<DropdownMenu>
 				<DropdownMenuTrigger asChild>
@@ -74,7 +77,7 @@ const Navbar = () => {
 								<DropdownMenuItem
 									onClick={() => router.push("/dashboard")}
 									className="hover:cursor-pointer">
-									<Banana className="mr-2 h-4 w-4" />
+									<LayoutDashboard className="mr-2 h-4 w-4" />
 									<span>Dashboard</span>
 								</DropdownMenuItem>
 							</DropdownMenuGroup>

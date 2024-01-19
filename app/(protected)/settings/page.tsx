@@ -61,104 +61,106 @@ const Settings = () => {
 	};
 
 	return (
-		<Card className="w-[600px]">
-			<CardHeader>
-				<p>Settings</p>
-			</CardHeader>
-			<CardContent>
-				<Form {...form}>
-					<form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-						<div className="space-y-4">
-							<FormField
-								control={form.control}
-								name="name"
-								render={({ field }) => (
-									<FormItem>
-										<FormLabel>Name</FormLabel>
-										<FormControl>
-											<Input
-												{...field}
-												placeholder="John"
-												type="text"
-												disabled={isPending}
-											/>
-										</FormControl>
-										<FormMessage />
-									</FormItem>
+		<div className="flex flex-col items-center pt-2">
+			<Card className="w-[600px]">
+				<CardHeader>
+					<p>Settings</p>
+				</CardHeader>
+				<CardContent>
+					<Form {...form}>
+						<form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+							<div className="space-y-4">
+								<FormField
+									control={form.control}
+									name="name"
+									render={({ field }) => (
+										<FormItem>
+											<FormLabel>Name</FormLabel>
+											<FormControl>
+												<Input
+													{...field}
+													placeholder="John"
+													type="text"
+													disabled={isPending}
+												/>
+											</FormControl>
+											<FormMessage />
+										</FormItem>
+									)}
+								/>
+								{user?.isOAuth === false && (
+									<>
+										<FormField
+											control={form.control}
+											name="email"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Email</FormLabel>
+													<FormControl>
+														<Input
+															{...field}
+															placeholder="student@ferit.hr"
+															type="email"
+															disabled={isPending}
+														/>
+													</FormControl>
+													<FormDescription>
+														We will send you an email to confirm your new email
+														address.
+													</FormDescription>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="password"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>Current password</FormLabel>
+													<FormControl>
+														<Input
+															{...field}
+															placeholder="******"
+															type="password"
+															disabled={isPending}
+														/>
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+										<FormField
+											control={form.control}
+											name="newPassword"
+											render={({ field }) => (
+												<FormItem>
+													<FormLabel>New password</FormLabel>
+													<FormControl>
+														<Input
+															{...field}
+															placeholder="******"
+															type="password"
+															disabled={isPending}
+														/>
+													</FormControl>
+													<FormMessage />
+												</FormItem>
+											)}
+										/>
+									</>
 								)}
-							/>
-							{user?.isOAuth === false && (
-								<>
-									<FormField
-										control={form.control}
-										name="email"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Email</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														placeholder="student@ferit.hr"
-														type="email"
-														disabled={isPending}
-													/>
-												</FormControl>
-												<FormDescription>
-													We will send you an email to confirm your new email
-													address.
-												</FormDescription>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="password"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>Current password</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														placeholder="******"
-														type="password"
-														disabled={isPending}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-									<FormField
-										control={form.control}
-										name="newPassword"
-										render={({ field }) => (
-											<FormItem>
-												<FormLabel>New password</FormLabel>
-												<FormControl>
-													<Input
-														{...field}
-														placeholder="******"
-														type="password"
-														disabled={isPending}
-													/>
-												</FormControl>
-												<FormMessage />
-											</FormItem>
-										)}
-									/>
-								</>
-							)}
-						</div>
-						<FormError message={error} />
-						<FormSuccess message={success} />
-						<Button type="submit" disabled={isPending} className="w-full">
-							Save
-						</Button>
-					</form>
-				</Form>
-			</CardContent>
-		</Card>
+							</div>
+							<FormError message={error} />
+							<FormSuccess message={success} />
+							<Button type="submit" disabled={isPending} className="w-full">
+								Save
+							</Button>
+						</form>
+					</Form>
+				</CardContent>
+			</Card>
+		</div>
 	);
 };
 

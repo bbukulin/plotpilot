@@ -25,7 +25,19 @@ model User {
   password      String?
   role          UserRole  @default(USER)
 
+  watchlistMovies Int[]
+  likedMovies Int[]
+  dislikedMovies Int[]
+
+  onboardingGenres String[]
+  onboardingKeywords String[]
+  // Samo movies_id saljemo na model
+  onboardingMovies Int[]
+  onboardingCompleted Boolean @default(false)
+
+  feedback Feedback[]
   accounts      Account[]
+  userMovieMatrix UserMovieMatrix[]
 }
 
 model Account {
@@ -65,4 +77,53 @@ model PasswordResetToken {
 
     // only one token per email
     @@unique([email, token])
+}
+
+model Movie {
+    id String @id @default(cuid())
+    genres String[]
+    movie_id Int
+    imdb_id String?
+    poster_path String?
+    release_date DateTime?
+    runtime Float
+    title String
+    description String
+    keywords String[]
+    weighted_rating Float
+
+    userMovieMatrix UserMovieMatrix[]
+}
+
+model UserMovieMatrix {
+    id String  @id @default(cuid())
+
+    userId String
+    movieId String
+    rating Int @default(-1)
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    movie Movie @relation(fields: [movieId], references: [id], onDelete: Cascade)
+
+    @@unique([userId, movieId])
+}
+
+model Genre {
+    id String @id @default(cuid())
+    name String
+}
+
+model Keyword {
+    id String @id @default(cuid())
+    name String
+}
+
+model Feedback {
+    id String @id @default(cuid())
+    userId String
+
+    csat Int
+    message String?
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
