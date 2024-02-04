@@ -28,6 +28,7 @@ model User {
   watchlistMovies Int[]
   likedMovies Int[]
   dislikedMovies Int[]
+  recommendedMovies Int[]
 
   onboardingGenres String[]
   onboardingKeywords String[]

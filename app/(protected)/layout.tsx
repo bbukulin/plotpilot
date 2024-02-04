@@ -1,10 +1,10 @@
-import Navbar from "@/components/movie/navbar";
+import Navbar from "@/components/ui/navbar";
 
 const ProtectedLayout = ({ children }: { children: React.ReactNode }) => {
 	return (
 		<>
 			<Navbar />
-			<div className="px-16">{children}</div>
+			<div>{children}</div>
 		</>
 	);
 };

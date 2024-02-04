@@ -4,6 +4,8 @@ import authConfig from "@/auth.config";
 import {
 	DEFAULT_LOGIN_REDIRECT,
 	apiAuthPrefix,
+	apiMoviePrefix,
+	apiWatchlistPrefix,
 	authRoutes,
 	publicRoutes,
 } from "@/routes";
@@ -15,10 +17,21 @@ export default auth((req) => {
 	const isLoggedIn = !!req.auth;
 
 	const isApiAuthRoute = nextUrl.pathname.startsWith(apiAuthPrefix);
+	const isApiMovieRoute = nextUrl.pathname.startsWith(apiMoviePrefix);
+	const isApiWatchlistRoute = nextUrl.pathname.startsWith(apiWatchlistPrefix);
+
 	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
 	if (isApiAuthRoute) {
+		return null;
+	}
+
+	if (isApiMovieRoute) {
+		return null;
+	}
+
+	if (isApiWatchlistRoute) {
 		return null;
 	}
 

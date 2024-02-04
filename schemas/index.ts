@@ -58,3 +58,7 @@ export const ResetSchema = z.object({
 export const NewPasswordSchema = z.object({
 	password: z.string().min(6, "Minimum 6 characters required"),
 });
+
+export const OnboardingSchema = z.object({
+	onboardingMovies: z.number().array().min(5, "Minimum 5 movies are required"),
+});

@@ -55,6 +55,9 @@ export const {
 				session.user.name = token.name;
 				session.user.email = token.email;
 				session.user.isOAuth = token.isOAuth as boolean;
+				session.user.watchlistMovies = token.watchlistMovies as number[];
+				session.user.likedMovies = token.likedMovies as number[];
+				session.user.dislikedMovies = token.dislikedMovies as number[];
 			}
 
 			return session;
@@ -72,6 +75,9 @@ export const {
 			token.name = existingUser.name;
 			token.email = existingUser.email;
 			token.role = existingUser.role;
+			token.watchlistMovies = existingUser.watchlistMovies;
+			token.likedMovies = existingUser.likedMovies;
+			token.dislikedMovies = existingUser.dislikedMovies;
 
 			return token;
 		},
