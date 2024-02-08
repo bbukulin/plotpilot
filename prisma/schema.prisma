@@ -24,15 +24,18 @@ model User {
   image         String?
   password      String?
   role          UserRole  @default(USER)
+  // Send to ML model
+  user_id       Int?    @unique
 
   watchlistMovies Int[]
   likedMovies Int[]
   dislikedMovies Int[]
-  recommendedMovies Int[]
+  contentBasedRecs Int[]
+  userBasedRecs Int[]
 
-  onboardingGenres String[]
-  onboardingKeywords String[]
-  // Samo movies_id saljemo na model
+  onboardingGenres Int[]
+  onboardingKeywords Int[]
+  // Send to ML model
   onboardingMovies Int[]
   onboardingCompleted Boolean @default(false)
 
@@ -110,12 +113,12 @@ model UserMovieMatrix {
 }
 
 model Genre {
-    id String @id @default(cuid())
+    id Int @id
     name String
 }
 
 model Keyword {
-    id String @id @default(cuid())
+    id Int @id
     name String
 }
 

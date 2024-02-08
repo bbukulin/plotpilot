@@ -65,10 +65,11 @@ const Billboard = () => {
 
 					<div className="flex flex-row items-center gap-x-2 pt-5">
 						<Button variant="outline" size="sm" onClick={onClick}>
+							<ChevronRight size={18} className="mr-2" />
 							More Details
 						</Button>
 
-						<WatchlistButton movie_id={movie?.movie_id} label />
+						<WatchlistButton movie_id={movie?.movie_id} />
 					</div>
 				</div>
 				<Image

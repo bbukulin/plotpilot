@@ -7,6 +7,14 @@ export type ExtendedUser = DefaultSession["user"] & {
 	watchlistMovies: number[];
 	likedMovies: number[];
 	dislikedMovies: number[];
+	contentBasedRecs: number[];
+	userBasedRecs: number[];
+
+	onboardingGenres: number[];
+	onboardingKeywords: number[];
+	onboardingCompleted: boolean;
+
+	user_id: number;
 };
 
 declare module "next-auth" {

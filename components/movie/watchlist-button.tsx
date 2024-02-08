@@ -8,13 +8,9 @@ import { useMovieStore } from "@/lib/store";
 
 interface iWatchlistButtonProps {
 	movie_id: number;
-	label?: boolean;
 }
 
-const WatchlistButton = ({
-	movie_id,
-	label = false,
-}: iWatchlistButtonProps) => {
+const WatchlistButton = ({ movie_id }: iWatchlistButtonProps) => {
 	const watchlistedMovieIDs = useMovieStore((state) => [
 		...state.watchlistedMovieIDs,
 	]);
@@ -27,17 +23,20 @@ const WatchlistButton = ({
 		useMovieStore.persist.rehydrate();
 	}, []);
 
-	console.log("WATCHLIST", watchlistedMovieIDs);
-
 	return (
 		<>
 			{watchlistedMovieIDs.includes(movie_id) ? (
 				<Button
 					size="sm"
 					variant="outline"
-					className="flex items-center gap-x-2"
+					className="flex items-center gap-x-2 transition duration-500"
 					onClick={() => removeFromWatchlist(movie_id)}>
-					<Bookmark width="16" height="16" className="text-red-500" />
+					<Bookmark
+						width="17"
+						height="17"
+						className="text-emerald-500 fill-emerald-500"
+					/>
+					Watchlist
 				</Button>
 			) : (
 				<Button
@@ -45,7 +44,8 @@ const WatchlistButton = ({
 					variant="outline"
 					className="flex items-center gap-x-2"
 					onClick={() => addToWatchlist(movie_id)}>
-					<Bookmark width="16" height="16" />
+					<Bookmark width="17" height="17" />
+					Watchlist
 				</Button>
 			)}
 		</>

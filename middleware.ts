@@ -23,15 +23,7 @@ export default auth((req) => {
 	const isPublicRoute = publicRoutes.includes(nextUrl.pathname);
 	const isAuthRoute = authRoutes.includes(nextUrl.pathname);
 
-	if (isApiAuthRoute) {
-		return null;
-	}
-
-	if (isApiMovieRoute) {
-		return null;
-	}
-
-	if (isApiWatchlistRoute) {
+	if (isApiAuthRoute || isApiMovieRoute || isApiWatchlistRoute) {
 		return null;
 	}
 
@@ -45,6 +37,17 @@ export default auth((req) => {
 	if (!isLoggedIn && !isPublicRoute) {
 		return Response.redirect(new URL("/auth/login", nextUrl));
 	}
+
+	/*
+	if (
+		isLoggedIn &&
+		!isOnboardingCompleted &&
+		!isPublicRoute &&
+		!nextUrl.pathname.startsWith("/onboarding")
+	) {
+		return Response.redirect(new URL("/onboarding", nextUrl));
+	}
+     */
 
 	return null;
 });

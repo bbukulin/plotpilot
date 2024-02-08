@@ -38,7 +38,7 @@ export const {
 			const existingUser = await getUserById(user.id);
 
 			// Prevent sign in without email verification
-			if (!existingUser?.emailVerified) return false;
+			//if (!existingUser?.emailVerified) return false;
 
 			return true;
 		},
@@ -55,9 +55,17 @@ export const {
 				session.user.name = token.name;
 				session.user.email = token.email;
 				session.user.isOAuth = token.isOAuth as boolean;
+
 				session.user.watchlistMovies = token.watchlistMovies as number[];
 				session.user.likedMovies = token.likedMovies as number[];
 				session.user.dislikedMovies = token.dislikedMovies as number[];
+
+				session.user.contentBasedRecs = token.contentBasedRecs as number[];
+				session.user.userBasedRecs = token.userBasedRecs as number[];
+
+				session.user.onboardingCompleted = token.onboardingCompleted as boolean;
+
+				session.user.user_id = token.user_id as number;
 			}
 
 			return session;
@@ -78,6 +86,10 @@ export const {
 			token.watchlistMovies = existingUser.watchlistMovies;
 			token.likedMovies = existingUser.likedMovies;
 			token.dislikedMovies = existingUser.dislikedMovies;
+			token.contentBasedRecs = existingUser.contentBasedRecs;
+			token.userBasedRecs = existingUser.userBasedRecs;
+			token.onboardingCompleted = existingUser.onboardingCompleted;
+			token.user_id = existingUser.user_id;
 
 			return token;
 		},

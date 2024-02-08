@@ -4,9 +4,6 @@ import { NextResponse } from "next/server";
 export const GET = async (req: Request, res: Response) => {
 	try {
 		const movies = await db.movie.findMany({
-			where: {
-				genres: { has: "Action" },
-			},
 			take: 10,
 		});
 		return NextResponse.json(movies, { status: 200 });

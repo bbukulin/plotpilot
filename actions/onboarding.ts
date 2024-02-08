@@ -4,9 +4,8 @@ import * as z from "zod";
 
 import { db } from "@/lib/db";
 import { OnboardingSchema } from "@/schemas";
-import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { DEFAULT_ONBOARDING_REDIRECT } from "@/routes";
 import { currentUser } from "@/lib/auth";
-import { url } from "inspector";
 
 export const onboarding = async (
 	values: z.infer<typeof OnboardingSchema>,
@@ -47,7 +46,7 @@ export const onboarding = async (
 					id: user?.id,
 				},
 				data: {
-					recommendedMovies: {
+					contentBasedRecs: {
 						set: recommendedMovies,
 					},
 				},
@@ -69,5 +68,7 @@ export const onboarding = async (
 		},
 	});
 
-	return { success: "Onboarding movies added!" };
+	return {
+		success: "Onboarding movies added!",
+	};
 };

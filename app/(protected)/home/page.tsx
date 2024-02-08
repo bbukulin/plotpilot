@@ -3,19 +3,32 @@
 import Billboard from "@/components/movie/billboard";
 import GenreList from "@/components/movie/genre-list";
 import MovieList from "@/components/movie/movie-list";
-import useMovieList from "@/hooks/use-movie-list";
+import useContentBased from "@/hooks/use-content-based";
+import useUserBased from "@/hooks/use-user-based";
 
 const Home = () => {
-	const { data, error } = useMovieList("Action");
+	const {
+		data: contentBased,
+		isLoading: contentLoading,
+		error: contentError,
+	} = useContentBased();
+	const {
+		data: userBased,
+		isLoading: userLoading,
+		error: userError,
+	} = useUserBased();
 
 	return (
 		<div>
-			<div className="space-y-4">
-				<Billboard />
-				<div className="px-16 space-y-4">
-					<MovieList data={data} listTitle="Action picks" />
-					<MovieList data={data} listTitle="Thriller picks" />
-				</div>
+			<Billboard />
+			<div className="px-16 space-y-4">
+				<MovieList
+					data={contentBased}
+					listTitle="Content based recommendations"
+				/>
+				{userBased && (
+					<MovieList data={userBased} listTitle="User based recommendations" />
+				)}
 			</div>
 		</div>
 	);

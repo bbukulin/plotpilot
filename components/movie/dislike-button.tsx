@@ -29,6 +29,7 @@ const DislikeButton = ({ movie_id }: iDislikeButtonProps) => {
 				<Button
 					size="sm"
 					variant="outline"
+					className="bg-red-800/20 transition duration-500 border-red-700"
 					onClick={() => removeFromDisliked(movie_id)}>
 					<ThumbsDown width="16" height="16" className="text-red-500" />
 				</Button>

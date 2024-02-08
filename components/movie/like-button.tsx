@@ -27,8 +27,9 @@ const LikeButton = ({ movie_id }: iLikeButtonProps) => {
 				<Button
 					size="sm"
 					variant="outline"
+					className="bg-emerald-900/20 transition duration-500 border-emerald-700"
 					onClick={() => removeFromLiked(movie_id)}>
-					<ThumbsUp width="16" height="16" className="text-red-500" />
+					<ThumbsUp width="16" height="16" className="text-emerald-500" />
 				</Button>
 			) : (
 				<Button

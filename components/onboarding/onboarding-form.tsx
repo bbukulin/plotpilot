@@ -21,7 +21,6 @@ import { FormSuccess } from "@/components/form-success";
 import { Button } from "@/components/ui/button";
 import { onboarding } from "@/actions/onboarding";
 import YearDisplay from "@/lib/yeardisplay";
-
 import useMovieList from "@/hooks/use-movie-list";
 
 const OnboardingSchema = z.object({
@@ -33,10 +32,11 @@ const OnboardingSchema = z.object({
 const OnboardingForm = () => {
 	const [error, setError] = useState<string | undefined>("");
 	const [success, setSuccess] = useState<string | undefined>("");
-	const [isPending, startTransition] = useTransition();
-	const { data } = useMovieList();
 
-	const form = useForm<z.infer<typeof OnboardingSchema>>({
+	const [isPending, startTransition] = useTransition();
+	const { data, isLoading } = useMovieList();
+
+	const form = useForm<z.z.infer<typeof OnboardingSchema>>({
 		resolver: zodResolver(OnboardingSchema),
 		defaultValues: {
 			onboardingMovies: [],
@@ -54,7 +54,7 @@ const OnboardingForm = () => {
 			)
 			.map((movie: any) => movie.movie_id);
 
-		console.log(uncheckedMovieIds);
+		//console.log(uncheckedMovieIds);
 
 		startTransition(() => {
 			onboarding(values, uncheckedMovieIds).then((data) => {
@@ -79,6 +79,7 @@ const OnboardingForm = () => {
 										We will recommend you new movies based on your selection.
 										The ones you do not select will be marked as disliked.
 									</FormDescription>
+									{isLoading && <div>Loading...</div>}
 									{data?.map((movie: any) => (
 										<FormField
 											key={movie.movie_id}
